@@ -7,15 +7,14 @@ import umc.spring.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
 @Table(name = "user_favourite_food_category")
-public class UserFavouriteFoodCategoryEntity extends BaseEntity {
+public class UserPreferEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,4 +26,15 @@ public class UserFavouriteFoodCategoryEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "food_category_id")
     private FoodCategoryEntity foodCategory;
+
+    public void setUser(UserEntity user){
+        if(this.user != null)
+            user.getUserPreferEntityList().remove(this);
+        this.user = user;
+        user.getUserPreferEntityList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategoryEntity foodCategory){
+        this.foodCategory = foodCategory;
+    }
 }
