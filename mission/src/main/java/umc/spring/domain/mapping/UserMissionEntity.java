@@ -10,10 +10,9 @@ import umc.spring.domain.enums.UserMissionStatus;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
