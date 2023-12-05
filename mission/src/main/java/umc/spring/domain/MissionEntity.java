@@ -21,12 +21,13 @@ import java.util.List;
 public class MissionEntity extends BaseEntity {
 
     @Column(length =20, nullable = false)
-    private String title;
-
-    @Column(length =20, nullable = false)
     private String content;
 
     private Integer reward;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private RestaurantEntity restaurant;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<UserMissionEntity> userMissionEntityList = new ArrayList<>();

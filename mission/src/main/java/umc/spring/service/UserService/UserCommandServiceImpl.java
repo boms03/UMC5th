@@ -6,11 +6,16 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPaylod.code.status.ErrorStatus;
 import umc.spring.apiPaylod.exception.handler.FoodCategoryHandler;
 import umc.spring.converter.UserConverter;
+import umc.spring.converter.UserMissionConverter;
 import umc.spring.converter.UserPreferConverter;
 import umc.spring.domain.FoodCategoryEntity;
+import umc.spring.domain.MissionEntity;
 import umc.spring.domain.UserEntity;
+import umc.spring.domain.mapping.UserMissionEntity;
 import umc.spring.domain.mapping.UserPreferEntity;
 import umc.spring.repository.FoodCategoryRepository;
+import umc.spring.repository.MissionRepository;
+import umc.spring.repository.UserMissionRepository;
 import umc.spring.repository.UserRepository;
 import umc.spring.web.dto.UserRequestDTO;
 
@@ -21,6 +26,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional()
 public class UserCommandServiceImpl implements UserCommandService{
+    private final UserMissionRepository userMissionRepository;
+    private final MissionRepository missionRepository;
     private final UserRepository userRepository;
     private final FoodCategoryRepository foodCategoryRepository;
 
@@ -38,5 +45,16 @@ public class UserCommandServiceImpl implements UserCommandService{
         userPreferList.forEach(userPreferEntity -> {userPreferEntity.setUser(newUser);});
 
         return userRepository.save(newUser);
+    }
+
+    @Override
+    public UserMissionEntity addMission(UserRequestDTO.MissionDTO request) {
+        // todo check null
+        UserEntity user = userRepository.findById(request.getUserId()).get();
+        MissionEntity mission = missionRepository.findById(request.getMissionId()).get();
+
+        UserMissionEntity userMission = UserMissionConverter.toUserMissionEntity(user,mission);
+
+        return userMissionRepository.save(userMission);
     }
 }
