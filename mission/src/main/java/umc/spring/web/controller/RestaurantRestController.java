@@ -1,6 +1,7 @@
 package umc.spring.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPaylod.ApiResponse;
 import umc.spring.converter.RestaurantConverter;
@@ -10,6 +11,7 @@ import umc.spring.domain.ReviewEntity;
 import umc.spring.domain.UserEntity;
 import umc.spring.service.RestaurantService.RestaurantCommandService;
 import umc.spring.validation.annotation.ExistRestaurant;
+import umc.spring.validation.annotation.ExistUser;
 import umc.spring.web.dto.RestaurantRequestDTO;
 import umc.spring.web.dto.RestaurantResponseDTO;
 import umc.spring.web.dto.UserRequestDTO;
@@ -19,6 +21,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/restaurants")
+@Validated
 @RequiredArgsConstructor
 public class RestaurantRestController {
     private final RestaurantCommandService restaurantCommandService;
@@ -43,6 +46,7 @@ public class RestaurantRestController {
             @PathVariable(name="restaurantID")
             Long restaurantID,
 
+            @ExistUser
             @RequestParam(name="userId")
             Long userId
     ){

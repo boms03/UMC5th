@@ -29,4 +29,12 @@ public class UserRequestDTO {
         @ExistCategories
         List<Long> preferCategory;
     }
+
+    @Getter
+    public static class MissionDTO{
+        @NotNull
+        Long userId;
+        @NotNull
+        Long missionId;
+    }
 }
