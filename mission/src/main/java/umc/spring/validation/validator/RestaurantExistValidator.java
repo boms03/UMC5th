@@ -7,6 +7,7 @@ import umc.spring.domain.RestaurantEntity;
 import umc.spring.service.RestaurantService.RestaurantQueryService;
 import umc.spring.validation.annotation.ExistCategories;
 import umc.spring.validation.annotation.ExistRestaurant;
+import umc.spring.validation.annotation.ExistUserMission;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,6 +20,10 @@ public class RestaurantExistValidator implements ConstraintValidator<ExistRestau
 
     private final RestaurantQueryService restaurantQueryService;
 
+    @Override
+    public void initialize(ExistRestaurant constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
         Optional< RestaurantEntity> target = restaurantQueryService.findRestaurant(value);

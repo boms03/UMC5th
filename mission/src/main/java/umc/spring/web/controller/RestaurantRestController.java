@@ -10,6 +10,7 @@ import umc.spring.domain.ReviewEntity;
 import umc.spring.domain.UserEntity;
 import umc.spring.service.RestaurantService.RestaurantCommandService;
 import umc.spring.validation.annotation.ExistRestaurant;
+import umc.spring.validation.annotation.ExistUser;
 import umc.spring.web.dto.RestaurantRequestDTO;
 import umc.spring.web.dto.RestaurantResponseDTO;
 import umc.spring.web.dto.UserRequestDTO;
@@ -43,6 +44,7 @@ public class RestaurantRestController {
             @PathVariable(name="restaurantID")
             Long restaurantID,
 
+            @ExistUser
             @RequestParam(name="userId")
             Long userId
     ){

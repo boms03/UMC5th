@@ -25,7 +25,7 @@ public class UserExistValidator implements ConstraintValidator<ExistUser,Long> {
         Optional<UserEntity> target = userQueryService.findUser(value);
         if(!target.isEmpty()){
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.MEMBER_NOT_FOUND.toString()).addConstraintViolation();
             return false;
         }
         return true;
