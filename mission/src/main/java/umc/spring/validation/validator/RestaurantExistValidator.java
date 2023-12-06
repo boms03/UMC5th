@@ -27,9 +27,10 @@ public class RestaurantExistValidator implements ConstraintValidator<ExistRestau
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
         Optional< RestaurantEntity> target = restaurantQueryService.findRestaurant(value);
-        if(!target.isEmpty()){
+        // todo target 검사
+        if(target.isEmpty()){
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.RESTRAUNT_NOT_FOUND.toString()).addConstraintViolation();
             return false;
         }
         return true;

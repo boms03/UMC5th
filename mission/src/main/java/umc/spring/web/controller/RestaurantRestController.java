@@ -1,6 +1,7 @@
 package umc.spring.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPaylod.ApiResponse;
 import umc.spring.converter.RestaurantConverter;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/restaurants")
+@Validated
 @RequiredArgsConstructor
 public class RestaurantRestController {
     private final RestaurantCommandService restaurantCommandService;

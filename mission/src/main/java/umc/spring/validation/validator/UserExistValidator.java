@@ -23,7 +23,7 @@ public class UserExistValidator implements ConstraintValidator<ExistUser,Long> {
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
         Optional<UserEntity> target = userQueryService.findUser(value);
-        if(!target.isEmpty()){
+        if(target.isEmpty()){
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(ErrorStatus.MEMBER_NOT_FOUND.toString()).addConstraintViolation();
             return false;

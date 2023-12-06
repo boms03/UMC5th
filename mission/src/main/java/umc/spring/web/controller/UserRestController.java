@@ -2,6 +2,7 @@ package umc.spring.web.controller;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/users")
 public class UserRestController {
     private final UserCommandService userCommandService;
@@ -35,7 +37,7 @@ public class UserRestController {
     @PostMapping("/add-mission")
     public ApiResponse<UserResponseDTO.AddMissionResultDTO> addMission(
             @RequestBody
-            @ExistUserMission 
+            @ExistUserMission
             UserRequestDTO.MissionDTO request
     ){
         UserMissionEntity userMission= userCommandService.addMission(request);
