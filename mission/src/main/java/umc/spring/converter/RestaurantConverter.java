@@ -1,11 +1,14 @@
 package umc.spring.converter;
 
+import org.springframework.data.domain.Page;
 import umc.spring.domain.RestaurantEntity;
 import umc.spring.domain.ReviewEntity;
 import umc.spring.web.dto.RestaurantRequestDTO;
 import umc.spring.web.dto.RestaurantResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RestaurantConverter {
     public static ReviewEntity toReview(RestaurantRequestDTO.ReviewDTO request){
@@ -36,4 +39,27 @@ public class RestaurantConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
+
+    public static RestaurantResponseDTO.ReviewPreViewDTO reviewPreViewDTO(ReviewEntity review){
+        return RestaurantResponseDTO.ReviewPreViewDTO.builder()
+                .ownerNickname(review.getUser().getName())
+                .score(review.getStar())
+                .createdAt(review.getRegisteredAt().toLocalDate())
+                .body(review.getContent())
+                .build();
+    }
+    public static RestaurantResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(Page<ReviewEntity> reviewList){
+        List<RestaurantResponseDTO.ReviewPreViewDTO> reviewPreViewDTOList = reviewList.stream()
+                .map(RestaurantConverter::reviewPreViewDTO).collect(Collectors.toList());
+
+        return RestaurantResponseDTO.ReviewPreViewListDTO.builder()
+                .isLast(reviewList.isLast())
+                .isFirst(reviewList.isFirst())
+                .totalPage(reviewList.getTotalPages())
+                .totalElements(reviewList.getTotalElements())
+                .listSize(reviewPreViewDTOList.size())
+                .reviewList(reviewPreViewDTOList)
+                .build();
+    }
+
 }
