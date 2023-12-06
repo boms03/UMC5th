@@ -15,9 +15,9 @@ import java.util.Optional;
 public class MissionQueryImpl implements MissionQueryService {
 
     private final MissionRepository missionRepository;
-    @Override
-    public Optional<MissionEntity> findMission(Long id){
 
+    @Override
+    public Optional<MissionEntity> findMission(Long id) {
         return missionRepository.findById(id);
     }
 }

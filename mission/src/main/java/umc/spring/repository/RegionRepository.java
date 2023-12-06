@@ -6,5 +6,6 @@ import umc.spring.domain.RegionEntity;
 import java.util.Optional;
 
 public interface RegionRepository extends JpaRepository<RegionEntity,Long> {
-    Optional<RegionEntity>findByName(String name);
+
+    Optional<RegionEntity> findByName(String name);
 }

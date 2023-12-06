@@ -13,4 +13,5 @@ public interface UserQueryService {
     Optional<UserMissionEntity> findUserMission(Long userId, Long missionId);
 
     Page<ReviewEntity> getReviewList(Long userId, Integer page);
+    Page<UserMissionEntity> getUserMissionList(Long userId, Integer page);
 }

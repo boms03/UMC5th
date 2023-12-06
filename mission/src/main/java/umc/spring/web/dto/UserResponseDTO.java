@@ -53,4 +53,28 @@ public class UserResponseDTO {
         LocalDate createdAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionListDTO{
+        List<UserResponseDTO.MissionDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionDTO{
+        String ownerNickname;
+        Integer reward;
+        String body;
+        LocalDate createdAt;
+    }
+
 }
