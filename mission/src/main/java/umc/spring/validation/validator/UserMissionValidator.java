@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import umc.spring.apiPaylod.code.status.ErrorStatus;
 import umc.spring.domain.mapping.UserMissionEntity;
 import umc.spring.service.UserService.UserQueryService;
+import umc.spring.validation.annotation.ExistUser;
 import umc.spring.validation.annotation.ExistUserMission;
 import umc.spring.web.dto.UserRequestDTO;
 

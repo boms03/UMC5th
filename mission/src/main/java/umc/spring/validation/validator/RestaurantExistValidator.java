@@ -30,7 +30,7 @@ public class RestaurantExistValidator implements ConstraintValidator<ExistRestau
         // todo target 검사
         if(target.isEmpty()){
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.RESTRAUNT_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.RESTAURANT_NOT_FOUND.toString()).addConstraintViolation();
             return false;
         }
         return true;

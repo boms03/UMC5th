@@ -13,6 +13,8 @@ import umc.spring.converter.UserMissionConverter;
 import umc.spring.domain.UserEntity;
 import umc.spring.domain.mapping.UserMissionEntity;
 import umc.spring.service.UserService.UserCommandService;
+import umc.spring.validation.annotation.ExistMission;
+import umc.spring.validation.annotation.ExistUser;
 import umc.spring.validation.annotation.ExistUserMission;
 import umc.spring.web.dto.UserRequestDTO;
 import umc.spring.web.dto.UserResponseDTO;
