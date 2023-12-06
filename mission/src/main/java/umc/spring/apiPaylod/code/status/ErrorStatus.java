@@ -29,8 +29,11 @@ public enum ErrorStatus implements BaseErrorCode {
 
     RESTAURANT_NOT_FOUND(HttpStatus.BAD_REQUEST, "RESTAURANT6001", "음식점이 없습니다."),
 
-    // 미션 관려 에러
+    // 미션 관련 에러
     MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION7001", "미션이 없습니다."),
+
+    // 페이지 관련 에러
+    INVALID_PAGE_NUMBER(HttpStatus.BAD_REQUEST, "PAGE8001", "부적절한 페이지 수 입니다."),
 
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
