@@ -18,6 +18,7 @@ import umc.spring.domain.ReviewEntity;
 import umc.spring.domain.UserEntity;
 import umc.spring.service.RestaurantService.RestaurantCommandService;
 import umc.spring.service.RestaurantService.RestaurantQueryService;
+import umc.spring.validation.annotation.CheckPage;
 import umc.spring.validation.annotation.ExistRestaurant;
 import umc.spring.validation.annotation.ExistUser;
 import umc.spring.web.dto.RestaurantRequestDTO;
@@ -77,7 +78,7 @@ public class RestaurantRestController {
     public ApiResponse<RestaurantResponseDTO.ReviewPreViewListDTO> getReviewList(
             @ExistRestaurant
             @PathVariable(name = "restaurantId")
-            Long restaurantId, @RequestParam(name = "page") Integer page
+            Long restaurantId, @CheckPage @RequestParam(name = "page") Integer page
     ) {
         Page<ReviewEntity> list = restaurantQueryService.getReviewList(restaurantId,page);
         return ApiResponse.onSuccess(RestaurantConverter.reviewPreViewListDTO(list));

@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import umc.spring.domain.ReviewEntity;
 import umc.spring.domain.UserEntity;
 import umc.spring.domain.enums.UserGender;
+import umc.spring.domain.mapping.UserMissionEntity;
 import umc.spring.web.dto.RestaurantResponseDTO;
 import umc.spring.web.dto.UserRequestDTO;
 import umc.spring.web.dto.UserResponseDTO;
@@ -64,6 +65,28 @@ public class UserConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreViewDTOList.size())
                 .reviewList(reviewPreViewDTOList)
+                .build();
+    }
+
+    public static UserResponseDTO.MissionDTO missionViewDTO(UserMissionEntity userMission){
+        return UserResponseDTO.MissionDTO.builder()
+                .ownerNickname(userMission.getUser().getName())
+                .reward(userMission.getMission().getReward())
+                .createdAt(userMission.getRegisteredAt().toLocalDate())
+                .body(userMission.getMission().getContent())
+                .build();
+    }
+    public static UserResponseDTO.MissionListDTO missionViewListDTO(Page<UserMissionEntity> missionList){
+        List<UserResponseDTO.MissionDTO> missionDTOList = missionList.stream()
+                .map(UserConverter::missionViewDTO).collect(Collectors.toList());
+
+        return UserResponseDTO.MissionListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionDTOList.size())
+                .missionList(missionDTOList)
                 .build();
     }
 }
